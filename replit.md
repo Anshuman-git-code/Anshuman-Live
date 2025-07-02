@@ -2,14 +2,14 @@
 
 ## Overview
 
-This is a professional portfolio website built with Streamlit showcasing Anshuman Mohapatra's expertise in DevOps, cloud-native development, and full-stack engineering. The website features a modern dark theme that reflects his cloud/DevOps industry background, with comprehensive sections displaying his projects, skills, achievements, and contact information. The portfolio emphasizes his unique combination of development and deployment expertise, highlighting 15+ production-ready projects and 104K+ content creation views.
+This is a professional portfolio website built with Streamlit showcasing Anshuman Mohapatra's expertise in software engineering, cloud-native development, and full-stack engineering. The website features a modern dark theme that reflects his cloud/DevOps industry background, with comprehensive sections displaying his projects, skills, and contact information. The portfolio emphasizes his unique combination of development and deployment expertise, highlighting 15+ production-ready projects.
 
 ## System Architecture
 
 The portfolio website follows a clean, single-page application architecture:
 
 - **Frontend**: Streamlit web framework with custom CSS styling
-- **Content**: Dynamic sections for About, Projects, Skills, Achievements, and Contact
+- **Content**: Dynamic sections for About, Projects, Skills, and Contact
 - **Styling**: Professional dark theme with gradient backgrounds and modern UI components
 - **Visualization**: Plotly charts for skill proficiency and GitHub activity
 - **Responsive Design**: Mobile-friendly layout with responsive columns and cards
@@ -21,9 +21,9 @@ The portfolio website follows a clean, single-page application architecture:
 - **Technology**: Streamlit framework with extensive custom CSS
 - **Features**: 
   - Hero section with gradient backgrounds and skill badges
-  - Tabbed navigation (About, Projects, Skills, Achievements, Contact)
+  - Tabbed navigation (About, Projects, Skills, Contact)
   - Responsive design with professional styling
-  - Interactive data visualizations for skills and achievements
+  - Interactive data visualizations for skills (including GitHub Activity Timeline)
 
 ### 2. Hero Section
 - **Design**: Gradient blue background with professional typography
@@ -45,12 +45,8 @@ The portfolio website follows a clean, single-page application architecture:
 ### 4. Skills Section
 - **Categories**: DevOps & Cloud, Security & Quality, Programming & Frameworks, Databases & Tools
 - **Visualization**: Interactive horizontal bar chart showing skill proficiency levels
-- **Technologies**: Focus on AWS, Kubernetes, Docker, Python, Jenkins, React
-
-### 5. Achievements Section
-- **Structure**: Categorized achievements with visual indicators
-- **Highlights**: GitHub contributions timeline, performance metrics, content creation impact
-- **Visualization**: Line chart showing GitHub activity over time
+- **Technologies**: Focus on AWS, Kubernetes, Docker, Python, Jenkins
+- **Includes**: GitHub Activity Timeline
 
 ## User Experience Flow
 
@@ -58,9 +54,8 @@ The portfolio website follows a clean, single-page application architecture:
 2. **Navigation**: Tabbed interface for easy section access
 3. **About**: Personal story, career journey, and professional differentiators
 4. **Projects**: Showcase of 6 major DevOps and full-stack projects with tech stacks
-5. **Skills**: Interactive visualization of technical competencies
-6. **Achievements**: Quantified accomplishments with performance metrics
-7. **Contact**: Professional contact information and education timeline
+5. **Skills**: Interactive visualization of technical competencies and GitHub Activity Timeline
+6. **Contact**: Professional contact information and education timeline
 
 ## External Dependencies
 
@@ -95,12 +90,10 @@ The portfolio website is designed for simple cloud deployment:
 ### Key Statistics
 - **Projects**: 15+ production-ready projects
 - **GitHub Contributions**: 350+ with 20-day coding streak
-- **Content Views**: 104K+ on technical videos
-- **Academic Performance**: 65% B.Tech, 70.60% 12th, 85.80% 10th
 
 ### Core Expertise Areas
 - **DevOps & Cloud**: AWS (EC2, EKS), Docker, Kubernetes, Jenkins, Terraform, ArgoCD
-- **Programming**: Python, JavaScript, TypeScript, Java, React, Flask, Node.js
+- **Programming**: Python, JavaScript, TypeScript, Java, Flask, Node.js
 - **Security**: SonarQube, Trivy, OWASP scanning, DevSecOps practices
 - **Databases**: MongoDB, MySQL, Redis, SQLAlchemy
 
@@ -112,6 +105,6 @@ Preferred communication style: Simple, everyday language.
 
 - July 02, 2025: Created professional portfolio website for Anshuman Mohapatra
   - Built comprehensive Streamlit application with modern UI/UX
-  - Integrated all projects, skills, achievements, and contact information
+  - Integrated all projects, skills, and contact information
   - Implemented responsive design with DevOps-themed styling
   - Added interactive visualizations for skills and GitHub activity

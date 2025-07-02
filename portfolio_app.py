@@ -3,10 +3,11 @@ import pandas as pd
 from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
+import re
 
 # Page configuration
 st.set_page_config(
-    page_title="Anshuman Mohapatra | DevOps Engineer & Full Stack Developer",
+    page_title="Anshuman Mohapatra | Software engineer",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -202,12 +203,48 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+def parse_project_date(date_str):
+    # Try to extract the latest date from the string
+    # Handles formats like 'Jun 19-22, 2025', 'Jun 11-14, 2025', 'Feb 03-12, 2025', 'Oct 01, 2024 - Dec 31, 2024', 'Jun 26, 2025'
+    date_str = date_str.strip()
+    # Handle range with dash
+    if '-' in date_str:
+        parts = re.split(r'-|–', date_str)
+        last_part = parts[-1].strip()
+        # If last part is just a day, get the month and year from the first part
+        if ',' in last_part:
+            # e.g. 'Jun 19-22, 2025' -> '22, 2025'
+            month = date_str.split()[0]
+            day_year = last_part.split(',')
+            day = re.sub(r'[^0-9]', '', day_year[0])
+            year = re.sub(r'[^0-9]', '', day_year[1]) if len(day_year) > 1 else re.sub(r'[^0-9]', '', last_part)
+            return datetime.strptime(f"{month} {day} {year}", "%b %d %Y")
+        elif len(parts) == 2 and ',' in parts[1]:
+            # e.g. 'Oct 01, 2024 - Dec 31, 2024'
+            return datetime.strptime(parts[1].strip(), "%b %d, %Y")
+        else:
+            # e.g. 'Jun 11-14, 2025' -> '14, 2025'
+            month = date_str.split()[0]
+            day_year = last_part.split(',')
+            day = re.sub(r'[^0-9]', '', day_year[0])
+            year = re.sub(r'[^0-9]', '', day_year[1]) if len(day_year) > 1 else re.sub(r'[^0-9]', '', last_part)
+            return datetime.strptime(f"{month} {day} {year}", "%b %d %Y")
+    else:
+        # e.g. 'Jun 26, 2025'
+        try:
+            return datetime.strptime(date_str, "%b %d, %Y")
+        except:
+            try:
+                return datetime.strptime(date_str, "%b %d, %Y")
+            except:
+                return datetime.min
+
 def main():
     # Hero Section
     st.markdown("""
     <div class="hero-section">
         <h1 class="hero-title">Anshuman Mohapatra</h1>
-        <p class="hero-subtitle">DevOps Engineer & Full Stack Developer</p>
+        <p class="hero-subtitle">Software engineer</p>
         <p class="hero-description">
             Passionate B.Tech Computer Science student specializing in cloud-native development, DevSecOps pipelines, 
             and microservices architecture. Experienced in building production-grade applications with modern CI/CD practices 
@@ -219,7 +256,6 @@ def main():
             <span class="skill-badge">Kubernetes</span>
             <span class="skill-badge">Docker</span>
             <span class="skill-badge">Jenkins</span>
-            <span class="skill-badge">React</span>
             <span class="skill-badge">Flask</span>
             <span class="skill-badge">DevSecOps</span>
         </div>
@@ -227,7 +263,7 @@ def main():
     """, unsafe_allow_html=True)
 
     # Navigation
-    tab1, tab2, tab3, tab4, tab5 = st.tabs(["🏠 About", "💼 Projects", "🛠️ Skills", "📊 Achievements", "📞 Contact"])
+    tab1, tab2, tab3, tab4 = st.tabs(["🏠 About", "💼 Projects", "🛠️ Skills", "📞 Contact"])
     
     with tab1:
         show_about_section()
@@ -239,9 +275,6 @@ def main():
         show_skills_section()
     
     with tab4:
-        show_achievements_section()
-    
-    with tab5:
         show_contact_section()
 
 def show_about_section():
@@ -264,7 +297,7 @@ def show_about_section():
         - **DevSecOps Pipelines**: Building secure, automated deployment workflows
         - **Cloud-Native Development**: Microservices architecture on AWS and Kubernetes  
         - **Full-Stack Applications**: End-to-end development with modern frameworks
-        - **Content Creation**: Sharing knowledge through technical videos (104K+ views)
+        - **Content Creation**: Sharing knowledge through technical videos
         
         ### 🌟 Future Vision
         
@@ -282,22 +315,8 @@ def show_about_section():
         
         st.markdown("""
         <div class="stats-card">
-            <div class="stats-number">104K+</div>
-            <div class="stats-label">Content Views</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div class="stats-card">
             <div class="stats-number">350+</div>
             <div class="stats-label">GitHub Contributions</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown("""
-        <div class="stats-card">
-            <div class="stats-number">65%</div>
-            <div class="stats-label">Academic Score</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -306,6 +325,62 @@ def show_projects_section():
     
     # Project data
     projects = [
+        {
+            "title": "Infra-Code-To-Prod-k8s",
+            "date": "Jun 11-14, 2025",
+            "description": "Comprehensive CI/CD pipeline using Terraform, Jenkins, SonarQube, JFrog Artifactory, Docker, and AWS EKS. Automates the entire software delivery process from code commit to production deployment.",
+            "tech_stack": ["Terraform", "AWS EC2", "AWS EKS", "Jenkins", "SonarQube", "JFrog Artifactory", "Docker", "Kubernetes (AWS EKS)", "Trivy"],
+            "link": "https://github.com/Anshuman-git-code/Infra-Code-To-Prod-k8s.git"
+        },
+        {
+            "title": "Registration App Jenkins Maven Deploy",
+            "date": "Jun 06-09, 2025",
+            "description": "Complete CI/CD pipeline using Jenkins and Docker on AWS infrastructure. Automates the build, test, and deployment process for applications using containerization.",
+            "tech_stack": ["Jenkins", "Maven", "Docker", "AWS EC2", "Amazon Linux", "Tomcat"],
+            "link": "https://github.com/Anshuman-git-code/registration-app-Jenkins_Maven_Deploy.git"
+        },
+        {
+            "title": "Jenkins Kubernetes Orchestrator",
+            "date": "Jun 02-05, 2025",
+            "description": "End-to-end CI/CD pipeline implementation using Jenkins, SonarQube, Docker, and Kubernetes (EKS) with GitOps methodology via ArgoCD. Features automated build, test, security scanning, and deployment of a Java web application with infrastructure as code principles.",
+            "tech_stack": ["Docker", "Jenkins", "Maven", "Trivy", "Kubernetes (EKS)", "SonarQube", "ArgoCD", "Tomcat"],
+            "link": "https://github.com/Anshuman-git-code/Jenkins-Kubernetes-Orchestrator.git"
+        },
+        {
+            "title": "Automated Voting App Deployment with Argo CD",
+            "date": "May 20-29, 2025",
+            "description": "Led the deployment of scalable applications on AWS EC2 using Kubernetes and Argo CD for streamlined management and continuous integration. Orchestrated deployments via Kubernetes dashboard, ensuring efficient resource utilisation and seamless scaling.",
+            "tech_stack": ["AWS EC2", "Kubernetes", "Kind", "Argo CD", "GitOps", "CI/CD"],
+            "link": "https://github.com/Anshuman-git-code/k8s-kind-voting-app-on-Kubernetes-With-ArgoCD.git"
+        },
+        {
+            "title": "Full Stack Chat Application Deployment",
+            "date": "Apr 27-30, 2025",
+            "description": "Improved scalability and automation with CI/CD pipelines using GitHub Actions, Kubernetes manifests for cloud deployment on platforms like AWS.",
+            "tech_stack": ["DevOps", "Cloud", "CI/CD", "Kubernetes"],
+            "link": "https://github.com/Anshuman-git-code/full-stack_chatApp.git"
+        },
+        {
+            "title": "Multi-Stage Dockerized Web Scraper",
+            "date": "Apr 18-21, 2025",
+            "description": "A multi-stage Dockerized web scraper built with Puppeteer (Node.js) and Flask (Python). Scrapes dynamic websites and serves extracted content via a lightweight REST API. Demonstrates DevOps practices like multi-stage builds and container optimization.",
+            "tech_stack": ["Docker", "Node.js", "Puppeteer", "Python", "Flask", "Alpine Linux"],
+            "link": "https://github.com/Anshuman-git-code/multi-stage-puppeteer-flask-scraper.git"
+        },
+        {
+            "title": "Real-time Cryptocurrency Data Integration",
+            "date": "Feb 03-12, 2025",
+            "description": "Fetches live data for the top 50 cryptos using CoinGecko API, analyzes trends, and updates a Google Sheets dashboard every 5 minutes. Tracks top 5 cryptos, avg price & 24h gainers/losers.",
+            "tech_stack": ["Python", "REST API", "Pandas", "CoinGecko API", "Data Automation"],
+            "link": "https://github.com/Anshuman-git-code/crypto-data-fetching.git"
+        },
+        {
+            "title": "Flask Blog Application",
+            "date": "Oct 01, 2024 - Dec 31, 2024",
+            "description": "A simple Flask-based web application that allows users to create accounts, post blogs, and view other users' blogs and profiles. Features registration, login, and an interactive feed.",
+            "tech_stack": ["Python", "Flask", "SQLAlchemy", "Flask-WTF", "Flask-Bcrypt", "Jinja2"],
+            "link": "https://github.com/Anshuman-git-code/Your_Blog.git"
+        },
         {
             "title": "E-Commerce Three-Tier Application EKS Deployment",
             "date": "Jun 26, 2025",
@@ -316,7 +391,7 @@ def show_projects_section():
         {
             "title": "Netflix Clone Deploy",
             "date": "Jun 19-22, 2025",
-            "description": "Complete DevOps pipeline for Netflix Clone with React and TypeScript. Features enterprise-grade automation from code commit to production with comprehensive CI/CD integration, security scanning, and Kubernetes orchestration.",
+            "description": "Complete DevOps pipeline for Netflix Clone with TypeScript. Features enterprise-grade automation from code commit to production with comprehensive CI/CD integration, security scanning, and Kubernetes orchestration.",
             "tech_stack": ["AWS EC2", "Jenkins", "Docker", "SonarQube", "Trivy", "Kubernetes", "Prometheus", "Grafana"],
             "link": "https://github.com/Anshuman-git-code/Netflix-Clone-Deploy.git"
         },
@@ -331,7 +406,7 @@ def show_projects_section():
             "title": "Kubernetes Containerized Code Execution Platform",
             "date": "Mar 3 - Apr 16, 2025",
             "description": "Secure, containerized code execution platform built with Kubernetes. Allows users to execute code in multiple programming languages (Python, JavaScript, C, C++) through a web interface with robust security measures.",
-            "tech_stack": ["Python", "Flask", "React", "Docker", "Kubernetes", "Nginx"],
+            "tech_stack": ["Python", "Flask", "Docker", "Kubernetes", "Nginx"],
             "link": "https://github.com/Anshuman-git-code/Execution-Containerized-k8s.git"
         },
         {
@@ -345,10 +420,13 @@ def show_projects_section():
             "title": "Wanderlust MERN Application Kubernetes Deployment",
             "date": "May 30 - Jun 1, 2025",
             "description": "Deployed microservices travel platform on Kubernetes using kubeadm with master-worker architecture. Implemented namespace isolation, persistent storage, and proper service discovery.",
-            "tech_stack": ["Kubernetes", "Docker", "MongoDB", "Redis", "Node.js", "React", "AWS EC2"],
+            "tech_stack": ["Kubernetes", "Docker", "MongoDB", "Redis", "Node.js", "AWS EC2"],
             "link": "https://github.com/Anshuman-git-code/wanderlust-MERN-k8s-deployment.git"
         }
     ]
+    
+    # Sort projects by parsed date descending (most recent first)
+    projects = sorted(projects, key=lambda p: parse_project_date(p['date']), reverse=True)
     
     # Display projects
     for project in projects:
@@ -395,8 +473,7 @@ def show_skills_section():
         st.markdown("""
         ### 💻 Programming & Frameworks
         """)
-        programming_skills = ["Python", "JavaScript", "TypeScript", "Java", "React", 
-                            "Flask", "Node.js", "HTML/CSS"]
+        programming_skills = ["Python", "JavaScript", "TypeScript", "Java", "Flask", "Node.js", "HTML/CSS"]
         
         for skill in programming_skills:
             st.markdown(f"• **{skill}**")
@@ -414,8 +491,8 @@ def show_skills_section():
     st.markdown("### 📊 Skill Proficiency")
     
     skills_data = {
-        'Skill': ['AWS', 'Kubernetes', 'Docker', 'Python', 'Jenkins', 'React', 'DevOps', 'Flask'],
-        'Proficiency': [85, 80, 90, 85, 75, 70, 88, 80]
+        'Skill': ['AWS', 'Kubernetes', 'Docker', 'Python', 'Jenkins', 'DevOps', 'Flask'],
+        'Proficiency': [85, 80, 90, 85, 75, 88, 80]
     }
     
     fig = px.bar(
@@ -437,73 +514,24 @@ def show_skills_section():
     
     st.plotly_chart(fig, use_container_width=True)
 
-def show_achievements_section():
-    st.markdown('<h2 class="section-header">Key Achievements</h2>', unsafe_allow_html=True)
-    
-    achievements = [
-        {
-            "category": "🏆 Technical Excellence",
-            "items": [
-                "Deployed production-grade DevSecOps pipelines integrating Jenkins, SonarQube, and Kubernetes",
-                "Architected microservices-based e-commerce platform on AWS EKS with 11 interconnected services",
-                "Maintained 350+ GitHub contributions with consistent 20-day coding streak"
-            ]
-        },
-        {
-            "category": "⚡ Performance Optimization", 
-            "items": [
-                "Achieved 70% Docker image size reduction through multi-stage builds and Alpine optimization",
-                "Implemented GitOps workflows resulting in 60% improved deployment efficiency",
-                "Optimized container startup time by 30% using advanced containerization techniques"
-            ]
-        },
-        {
-            "category": "🎯 Content Creation Impact",
-            "items": [
-                "Generated 104K+ views on technical content showcasing DevOps and cloud concepts",
-                "Improved audio production quality by 95% through advanced editing techniques",
-                "Built comprehensive portfolio of 10+ production-ready projects"
-            ]
-        },
-        {
-            "category": "🌟 Recognition & Growth",
-            "items": [
-                "Earned multiple GitHub achievement badges including MultiLanguage and Hyper Committer",
-                "Successfully balanced rigorous B.Tech coursework with enterprise-level projects",
-                "Demonstrated proficiency across multiple programming languages and frameworks"
-            ]
-        }
-    ]
-    
-    for achievement in achievements:
-        st.markdown(f"### {achievement['category']}")
-        for item in achievement['items']:
-            st.markdown(f"✅ {item}")
-        st.markdown("---")
-    
-    # GitHub contribution timeline
+    # GitHub contribution timeline (moved from Achievements section)
     st.markdown("### 📈 GitHub Activity Timeline")
-    
-    # Sample data for visualization
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
     contributions = [45, 52, 67, 89, 76, 85]
-    
-    fig = go.Figure(data=go.Scatter(
+    fig2 = go.Figure(data=go.Scatter(
         x=months, 
         y=contributions,
         mode='lines+markers',
         line=dict(color='#2a5298', width=3),
         marker=dict(size=8, color='#1e3c72')
     ))
-    
-    fig.update_layout(
+    fig2.update_layout(
         title="GitHub Contributions (2025)",
         xaxis_title="Month",
         yaxis_title="Contributions",
         height=300
     )
-    
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig2, use_container_width=True)
 
 def show_contact_section():
     st.markdown('<h2 class="section-header">Let\'s Connect</h2>', unsafe_allow_html=True)
@@ -546,7 +574,6 @@ def show_contact_section():
         **B.Tech Computer Science**  
         ITER, SOA University  
         Expected Graduation: 2026  
-        Current CGPA: 65%
         """)
     
     # Education timeline
@@ -556,20 +583,17 @@ def show_contact_section():
         {
             "year": "2022 - 2026",
             "institution": "Institute of Technical Education and Research, Bhubaneshwar",
-            "degree": "B.Tech - Computer Science & Engineering",
-            "score": "65%"
+            "degree": "B.Tech - Computer Science & Engineering"
         },
         {
             "year": "2022",
             "institution": "St. Xavier's High School, Cuttack", 
-            "degree": "12th Grade - CBSE",
-            "score": "70.60%"
+            "degree": "12th Grade - CBSE"
         },
         {
             "year": "2020",
             "institution": "DAV Public School, Cuttack",
-            "degree": "10th Grade - CBSE", 
-            "score": "85.80%"
+            "degree": "10th Grade - CBSE"
         }
     ]
     
@@ -578,7 +602,6 @@ def show_contact_section():
         <div class="timeline-item">
             <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">{edu['degree']}</h4>
             <p style="color: #6c757d; margin-bottom: 0.5rem;"><strong>{edu['year']}</strong> | {edu['institution']}</p>
-            <p style="color: #2a5298; font-weight: 600;">Score: {edu['score']}</p>
         </div>
         """, unsafe_allow_html=True)
 
