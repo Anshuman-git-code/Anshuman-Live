@@ -240,24 +240,38 @@ def parse_project_date(date_str):
                 return datetime.min
 
 def main():
-    # Hero Section (centered with flexbox, badges always inside box)
+    # Hero Section (perfect vertical and horizontal centering)
     st.markdown(
         """
-        <div style='display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 320px; background: #2451a6; border-radius: 20px; color: white; margin-top: 40px; margin-bottom: 40px; padding: 30px 0;'>
-            <h1 style='margin-bottom: 10px;'>Anshuman Mohapatra</h1>
-            <h3 style='margin-bottom: 20px;'>DevOps Engineer</h3>
-            <p style='max-width: 700px; text-align: center;'>
-                Passionate Engineer specializing in cloud-native development, DevSecOps pipelines, and microservices architecture.<br>
-                Experienced in building production-grade applications with modern CI/CD practices and container orchestration on AWS and Kubernetes.
-            </p>
-            <div style='display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px;'>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Python</span>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>AWS</span>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Kubernetes</span>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Docker</span>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Jenkins</span>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Flask</span>
-                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>DevSecOps</span>
+        <div style='
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 350px;
+            background: #2451a6;
+            border-radius: 20px;
+            color: white;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        '>
+            <div style='width: 100%;'>
+                <h1 style='margin-bottom: 10px; text-align: center;'>Anshuman Mohapatra</h1>
+                <h3 style='margin-bottom: 20px; text-align: center;'>DevOps Engineer</h3>
+                <p style='max-width: 700px; text-align: center; margin: 0 auto;'>
+                    Passionate Engineer specializing in cloud-native development, DevSecOps pipelines, and microservices architecture.<br>
+                    Experienced in building production-grade applications with modern CI/CD practices and container orchestration on AWS and Kubernetes.
+                </p>
+                <div style='display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px;'>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Python</span>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>AWS</span>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Kubernetes</span>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Docker</span>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Jenkins</span>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>Flask</span>
+                    <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px;'>DevSecOps</span>
+                </div>
             </div>
         </div>
         """,
