@@ -15,7 +15,11 @@ st.set_page_config(
 
 # Custom CSS for dark theme and professional styling
 st.markdown("""
+<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
 <style>
+    body, .hero-title, .hero-subtitle, .hero-description, .skill-badge {
+        font-family: 'Roboto', sans-serif !important;
+    }
     /* Global styles */
     .main .block-container {
         padding-top: 2rem;
