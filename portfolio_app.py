@@ -240,27 +240,29 @@ def parse_project_date(date_str):
                 return datetime.min
 
 def main():
-    # Hero Section
-    st.markdown("""
-    <div class="hero-section">
-        <h1 class="hero-title">Anshuman Mohapatra</h1>
-        <p class="hero-subtitle">DevOps Engineer</p>
-        <p class="hero-description">
-            Passionate Engineer specializing in cloud-native development, DevSecOps pipelines, 
-            and microservices architecture. Experienced in building production-grade applications with modern CI/CD practices 
-            and container orchestration on AWS and Kubernetes.
-        </p>
-        <div style="margin-top: 2rem;">
-            <span class="skill-badge">Python</span>
-            <span class="skill-badge">AWS</span>
-            <span class="skill-badge">Kubernetes</span>
-            <span class="skill-badge">Docker</span>
-            <span class="skill-badge">Jenkins</span>
-            <span class="skill-badge">Flask</span>
-            <span class="skill-badge">DevSecOps</span>
+    # Hero Section (centered with flexbox)
+    st.markdown(
+        """
+        <div style='display: flex; flex-direction: column; justify-content: center; align-items: center; height: 300px; background: #2451a6; border-radius: 20px; color: white; margin-top: 40px; margin-bottom: 40px;'>
+            <h1 style='margin-bottom: 10px;'>Anshuman Mohapatra</h1>
+            <h3 style='margin-bottom: 20px;'>DevOps Engineer</h3>
+            <p style='max-width: 700px; text-align: center;'>
+                Passionate Engineer specializing in cloud-native development, DevSecOps pipelines, and microservices architecture.<br>
+                Experienced in building production-grade applications with modern CI/CD practices and container orchestration on AWS and Kubernetes.
+            </p>
+            <div>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>Python</span>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>AWS</span>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>Kubernetes</span>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>Docker</span>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>Jenkins</span>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>Flask</span>
+                <span style='background: #3b5998; border-radius: 20px; padding: 5px 15px; margin: 0 5px;'>DevSecOps</span>
+            </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
     # Navigation
     tab1, tab2, tab3, tab4 = st.tabs(["🏠 About", "💼 Projects", "🛠️ Skills", "📞 Contact"])
