@@ -7,7 +7,7 @@ import re
 
 # Page configuration
 st.set_page_config(
-    page_title="Anshuman Mohapatra | Software engineer",
+    page_title="Anshuman Mohapatra | DevOps Engineer",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -244,9 +244,9 @@ def main():
     st.markdown("""
     <div class="hero-section">
         <h1 class="hero-title">Anshuman Mohapatra</h1>
-        <p class="hero-subtitle">Software engineer</p>
+        <p class="hero-subtitle">DevOps Engineer</p>
         <p class="hero-description">
-            Passionate B.Tech Computer Science student specializing in cloud-native development, DevSecOps pipelines, 
+            Passionate Engineer specializing in cloud-native development, DevSecOps pipelines, 
             and microservices architecture. Experienced in building production-grade applications with modern CI/CD practices 
             and container orchestration on AWS and Kubernetes.
         </p>
@@ -286,7 +286,7 @@ def show_about_section():
         st.markdown("""
         ### 🚀 Career Journey
         
-        I'm a passionate B.Tech Computer Science student at ITER, SOA University, graduating in 2026. My journey began with curiosity about how applications work behind the scenes, leading me deep into the DevOps and cloud infrastructure domain.
+        I'm a passionate DevOps Enginee. My journey began with curiosity about how applications work behind the scenes, leading me deep into the DevOps and cloud infrastructure domain.
         
         ### 💡 What Makes Me Different
         
