@@ -3,7 +3,11 @@ services:
     name: portfolio-streamlit
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run portfolio_app.py --server.port $PORT --server.address 0.0.0.0
+    startCommand: ./render-start.sh
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0 
+        value: 3.11.0
+      - key: STREAMLIT_SERVER_PORT
+        value: $PORT
+      - key: STREAMLIT_SERVER_ADDRESS
+        value: 0.0.0.0 
